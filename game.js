@@ -50,7 +50,7 @@ const ANCHO = canvas.width;   // ancho del área de juego (800)
 const ALTO = canvas.height;   // alto del área de juego (600)
 
 // Velocidades y tamaños
-const VELOCIDAD_JUGADOR = 7;             // qué tan rápido se mueve el pan
+const VELOCIDAD_JUGADOR = 6;             // qué tan rápido se mueve el pan
 const VELOCIDAD_INGREDIENTE_MIN = 1;   // velocidad mínima de caída
 const VELOCIDAD_INGREDIENTE_MAX = 3;     // velocidad máxima de caída
 const TAMANO_INGREDIENTE = 60;           // tamaño en píxeles de cada ingrediente
