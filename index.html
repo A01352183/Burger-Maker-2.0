@@ -1,0 +1,114 @@
+<html lang="es">
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Rush 🍔</title>
+
+    <!-- Conectamos el archivo de estilos (los colores, tamaños, etc.) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 
+      CONTENEDOR PRINCIPAL DEL JUEGO
+      Todo lo del juego vive dentro de este div.
+      Si quieres cambiar el tamaño total del juego, hazlo en style.css
+    -->
+    <div id="contenedor-juego">
+
+        <!-- 
+          =============================================================
+          INTERFAZ SUPERIOR (UI)
+          Aquí se muestra la receta del lado izquierdo y las estadísticas
+          del lado derecho mientras juegas.
+          =============================================================
+        -->
+        <div id="ui-superior">
+
+            <!-- Caja de la RECETA: lista de ingredientes a atrapar -->
+            <div id="receta-caja">
+                <h3>📋 Receta:</h3>
+                <!-- La lista se llena automáticamente desde game.js -->
+                <ol id="lista-receta" style="font-weight: bold;"></ol>
+            </div>
+
+            <!-- Caja de ESTADÍSTICAS en vivo (tiempo + ingredientes) -->
+            <div id="stats-caja">
+                <p>⏱️ Tiempo: <span id="tiempo">0</span>s</p>
+                <p>🎯 Atrapados: <span id="ingredientes-contador">0</span></p>
+                <p>🍔 Burgers: <span id="hamburguesas-contador">0</span></p>
+            </div>
+        </div>
+
+        <!-- 
+          =============================================================
+          CANVAS: el "lienzo" donde se dibuja el juego
+          Aquí caen los ingredientes, se mueve el jugador, etc.
+          IMPORTANTE: si cambias width/height, también ajusta en game.js
+          =============================================================
+        -->
+        <canvas id="canvas-juego" width="800" height="600"></canvas>
+
+        <!-- 
+          =============================================================
+          PANTALLA DE INICIO
+          Es el modal que aparece al abrir el juego.
+          Empieza VISIBLE y se oculta cuando el jugador da clic en jugar.
+          =============================================================
+        -->
+        <div id="modal-inicio">
+            <div class="caja-modal">
+                <h1>🍔 BURGER RUSH</h1>
+                <p class="subtitulo">Atrapa los ingredientes en el orden correcto</p>
+                <div class="instrucciones">
+                    <p>🎮 <strong>← →</strong> para moverte</p>
+                    <p>✅ Atrapa los ingredientes según la receta</p>
+                    <p>❌ Si atrapas uno equivocado, pierdes</p>
+                </div>
+                <button id="boton-iniciar">▶️ JUGAR</button>
+            </div>
+        </div>
+
+        <!-- 
+          =============================================================
+          PANTALLA DE GAME OVER
+          Aparece cuando pierdes. Empieza OCULTA (clase .oculto)
+          y se muestra cuando game.js detecta una derrota.
+          =============================================================
+        -->
+        <div id="modal-gameover" class="oculto">
+            <div class="caja-modal">
+                <h1>💀 GAME OVER</h1>
+                <!-- Razón específica de la derrota (lo llena game.js) -->
+                <p id="mensaje-final" class="subtitulo"></p>
+
+                <!-- Estadísticas finales -->
+                <div class="stats-finales">
+                    <p>⏱️ Tiempo sobrevivido: <span id="stat-tiempo">0</span>s</p>
+                    <p>🎯 Ingredientes atrapados: <span id="stat-ingredientes">0</span></p>
+                    <p>🍔 Hamburguesas completas: <span id="stat-hamburguesas">0</span></p>
+                </div>
+
+                <button id="boton-reiniciar">🔄 Volver a Jugar</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 
+      AUDIO DE FONDO
+      Se carga oculto y game.js lo controla (play/pause).
+      El atributo "loop" hace que se repita infinitamente.
+    -->
+    <audio id="musica-fondo" src="Assets/music/background.mp3" loop></audio>
+
+    <!-- 
+      Cargamos el JavaScript AL FINAL para que el HTML
+      ya esté listo cuando el código intente buscar elementos.
+    -->
+    <script src="game.js"></script>
+</body>
+</html>
+
+

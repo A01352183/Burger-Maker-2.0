@@ -1,0 +1,247 @@
+/* 
+  =====================================================================
+  BURGER RUSH - Hoja de estilos (CSS)
+  =====================================================================
+  Aquí se define CÓMO SE VE el juego: colores, tamaños, fuentes,
+  posiciones, animaciones, etc.
+  Si quieres cambiar la apariencia, este es tu archivo.
+  =====================================================================
+*/
+
+/* 
+  RESET BÁSICO
+  Quita los márgenes y rellenos por defecto que el navegador pone
+  para tener control total sobre los espacios.
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 
+  FONDO DE TODA LA PÁGINA
+  Centramos el juego en el medio de la pantalla
+*/
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* 
+  CONTENEDOR DEL JUEGO
+  El "marco" que envuelve todo el juego.
+  Si quieres hacer el juego más grande/chico, cambia width y height aquí
+  Y TAMBIÉN en index.html (canvas) y en game.js (constantes ANCHO/ALTO)
+*/
+#contenedor-juego {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    border: 4px solid #f39c12;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(243, 156, 18, 0.6);
+}
+
+/* 
+  CANVAS DEL JUEGO
+  El lienzo donde se dibuja todo el gameplay
+*/
+#canvas-juego {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #87CEEB; /* color de respaldo si la imagen de fondo no carga */
+}
+
+/* 
+  ===================================================================
+  INTERFAZ SUPERIOR (RECETA + STATS)
+  ===================================================================
+*/
+#ui-superior {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;             /* lo mantenemos encima del canvas */
+    pointer-events: none;     /* permite hacer clic a través de la UI */
+}
+
+/* Cajas de receta y stats (mismo estilo base) */
+#receta-caja, #stats-caja {
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: 2px solid #f39c12;
+    font-size: 14px;
+    backdrop-filter: blur(4px);
+}
+
+#receta-caja {
+    min-width: 180px;
+}
+
+#receta-caja h3 {
+    color: #f39c12;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+/* La lista de la receta */
+#lista-receta {
+    list-style: none;
+    padding: 0;
+}
+
+#lista-receta li {
+    padding: 4px 0;
+    transition: all 0.3s ease;
+}
+
+/* Estilo para ingredientes ya atrapados */
+#lista-receta li.completado {
+    text-decoration: line-through;
+    color: #2ecc71;
+    opacity: 0.6;
+}
+
+/* Estilo para el ingrediente que el jugador debe buscar AHORA */
+#lista-receta li.actual {
+    color: #f39c12;
+    font-weight: bold;
+    transform: translateX(5px);
+}
+
+#stats-caja p {
+    margin: 3px 0;
+}
+
+/* 
+  ===================================================================
+  MODALES (PANTALLAS DE INICIO Y GAME OVER)
+  ===================================================================
+*/
+#modal-inicio, #modal-gameover {
+    position: absolute;
+    inset: 0;                /* cubre todo el contenedor */
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    backdrop-filter: blur(8px);
+}
+
+/* Clase utilitaria para esconder elementos */
+.oculto {
+    display: none !important;
+}
+
+/* La cajita central de los modales */
+.caja-modal {
+    background: linear-gradient(145deg, #2c3e50, #34495e);
+    color: white;
+    padding: 40px 50px;
+    border-radius: 16px;
+    text-align: center;
+    border: 3px solid #f39c12;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    max-width: 500px;
+    animation: aparecer 0.4s ease-out;
+}
+
+/* Animación de entrada de los modales */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.caja-modal h1 {
+    font-size: 42px;
+    margin-bottom: 16px;
+    color: #f39c12;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.caja-modal .subtitulo {
+    font-size: 16px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.instrucciones {
+    background: rgba(0,0,0,0.3);
+    padding: 16px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.instrucciones p {
+    margin: 6px 0;
+    font-size: 15px;
+}
+
+/* Caja de estadísticas finales en Game Over */
+.stats-finales {
+    margin: 24px 0;
+    padding: 18px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 10px;
+    border-left: 4px solid #f39c12;
+    text-align: left;
+}
+
+.stats-finales p {
+    margin: 6px 0;
+    font-size: 16px;
+}
+
+.stats-finales span {
+    color: #f39c12;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* 
+  BOTONES
+*/
+button {
+    padding: 14px 36px;
+    font-size: 20px;
+    font-weight: bold;
+    background: linear-gradient(145deg, #f39c12, #e67e22);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.6);
+}
+
+button:active {
+    transform: translateY(0) scale(1);
+}
+
