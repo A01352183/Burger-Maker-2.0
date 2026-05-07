@@ -51,8 +51,8 @@ const ALTO = canvas.height;   // alto del área de juego (600)
 
 // Velocidades y tamaños
 const VELOCIDAD_JUGADOR = 6;             // qué tan rápido se mueve el pan
-const VELOCIDAD_INGREDIENTE_MIN = 1;   // velocidad mínima de caída
-const VELOCIDAD_INGREDIENTE_MAX = 3;     // velocidad máxima de caída
+const VELOCIDAD_INGREDIENTE_MIN = 1.5;   // velocidad mínima de caída
+const VELOCIDAD_INGREDIENTE_MAX = 3.5;     // velocidad máxima de caída
 const TAMANO_INGREDIENTE = 60;           // tamaño en píxeles de cada ingrediente
 const ANCHO_JUGADOR = 120;               // ancho del pan inferior
 const ALTO_JUGADOR = 70;                 // alto del pan inferior
